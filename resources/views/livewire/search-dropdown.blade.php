@@ -1,5 +1,5 @@
 <div class="search-container ml-0 sm:ml-0 md:ml-24 mt-12 relative" x-data="{ isOpen: false }">
-    <input wire:model.debounce.500ms="search" type="text" class="search-input rounded-full py-2 px-4 border border-gray-700 round text-white text-lg w-full bg-white focus:bg-gray-500 transition ease-in-out duration-150" placeholder="Search Movies..." x-ref="search" @keydown.window="
+    <input wire:model.debounce.500ms="search" type="text" class="search-input rounded-full py-2 px-4 border border-gray-700 round text-gray-900 focus:text-white text-lg w-full bg-white focus:bg-gray-500 transition ease-in-out duration-150" placeholder="Search Movies..." x-ref="search" @keydown.window="
         if(event.keyCode === 191) {
             event.preventDefault();
             $refs.search.focus();
@@ -26,7 +26,7 @@
                                     <div class="ml-4">
                                         <p class="text-lg font-semibold">{{ $searchResult['title'] }}</p>
                                         @if(array_key_exists('genre_ids', $searchResult))
-                                        <div class="text-gray-400 text-sm whitespace-normal genres text-center md:text-left">
+                                        <div class="text-gray-400 text-sm whitespace-normal genres md:text-left">
                                             @foreach ($searchResult['genre_ids'] as $genre_id)
                                                 {{ $movieGenres[$genre_id] }}<span>, </span>
                                             @endforeach
