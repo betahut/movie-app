@@ -7,7 +7,7 @@
 @section('content')
     <div class="mx-auto bg-gray-900">
         <div class="content">
-            <div class="hero-image absolute h-screen bg-cover bg-center container" style="background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%), url({{ 'https://image.tmdb.org/t/p/original/'.$topRatedMovies[0]['backdrop_path'] }});"></div>
+            <div class="hero-image absolute h-screen bg-cover bg-center container" style="background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%), url({{ config('services.tmdb.backdropurl').$topRatedMovies[0]['backdrop_path'] }});"></div>
             <div class="p-8 z-10 relative">
                 <div class="glide__featured relative">
                     <div class="flex glide__track" data-glide-el="track">
@@ -34,38 +34,40 @@
 @section('scripts')
     <script src="/js/glide.min.js"></script>
     <script>
-        let featuredGlide = new Glide('.glide__featured', {
-            startAt: 0,
-            rewind: false,
-        }).mount();
-        
-        let featuredImage = document.querySelector('.hero-image');
-        let featuredGlideLeft = document.querySelector('.glide__featured .glide__arrow--left');
-        let featuredGlideRight = document.querySelector('.glide__featured .glide__arrow--right');
+        if(document.querySelector('.glide__featured .glide__track')){
+            let featuredGlide = new Glide('.glide__featured', {
+                startAt: 0,
+                rewind: false,
+            }).mount();
+            
+            let featuredImage = document.querySelector('.hero-image');
+            let featuredGlideLeft = document.querySelector('.glide__featured .glide__arrow--left');
+            let featuredGlideRight = document.querySelector('.glide__featured .glide__arrow--right');
 
-        let featuredGlideMove = (move) => featuredGlide.go(move);
-        let featuredBgIamge = () => {
-            let activeBgImage = document.querySelector('.glide__featured .glide__slide--active .movie-back-drop').innerText;
-            featuredImage.style.background = `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%), url(${activeBgImage}) no-repeat`;
+            let featuredGlideMove = (move) => featuredGlide.go(move);
+            let featuredBgIamge = () => {
+                let activeBgImage = document.querySelector('.glide__featured .glide__slide--active .movie-back-drop').innerText;
+                featuredImage.style.background = `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%), url(${activeBgImage}) no-repeat`;
+            }
+
+            featuredGlideLeft.addEventListener('click', (e) => {
+                e.preventDefault();
+                featuredGlideMove('<');
+                setTimeout(() => featuredBgIamge(), 500);
+            });
+            
+            featuredGlideRight.addEventListener('click', (e) => {
+                e.preventDefault();
+                featuredGlideMove('>');
+                setTimeout(() => featuredBgIamge(), 500);
+            });
+
+            featuredGlide.on('swipe.end', () => {
+                setTimeout(() => featuredBgIamge(), 500);
+            });
         }
 
-        featuredGlideLeft.addEventListener('click', (e) => {
-            e.preventDefault();
-            featuredGlideMove('<');
-            setTimeout(() => featuredBgIamge(), 500);
-        });
-        
-        featuredGlideRight.addEventListener('click', (e) => {
-            e.preventDefault();
-            featuredGlideMove('>');
-            setTimeout(() => featuredBgIamge(), 500);
-        });
-
-        featuredGlide.on('swipe.end', () => {
-            setTimeout(() => featuredBgIamge(), 500);
-        })
-
-        new Glide('.glide__now__playing', {
+        document.querySelector('.glide__now__playing .glide__track') && new Glide('.glide__now__playing', {
             startAt: 0,
             rewind: false,
             perView: 5,
@@ -78,7 +80,7 @@
             }
         }).mount();
 
-        new Glide('.glide__whats__popular', {
+        document.querySelector('.glide__whats__popular .glide__track') && new Glide('.glide__whats__popular', {
             startAt: 0,
             rewind: false,
             perView: 5,

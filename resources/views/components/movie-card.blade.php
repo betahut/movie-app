@@ -1,6 +1,6 @@
 <li class="mt-8">
     <a href="{{ route('movies.show', $movie['id']) }}" class="flex justify-center md:block transition ease-in-out duration-150">
-        <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$movie['poster_path'] }}" alt="movie-poster" class="rounded-lg hover:opacity-75 transition ease-in-out duration-150" />
+        <img src="{{ $movie['poster_path'] ? config('services.tmdb.posterurl').$movie['poster_path'] : config('services.tmdb.noimgurl') }}" alt="movie-poster" class="rounded-lg hover:opacity-75 transition ease-in-out duration-150" />
     </a>
     <div class="mt-2 flex justify-center flex-col items-center md:block transition ease-in-out duration-150 truncate">
         <a href="{{ route('movies.show', $movie['id']) }}" class="text-lg mt-2 hover:text-gray:300 w-full md:w-auto text-center md:text-left" title="{{ $movie['title'] }}">{{ $movie['title'] }}</a>

@@ -7,11 +7,11 @@
 @section('content')
     <div class="mx-auto bg-gray-900">
         <div class="content">
-            <div class="hero-image absolute h-screen bg-cover bg-center container" style="background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%), url({{ 'https://image.tmdb.org/t/p/original/'.$movie['backdrop_path'] }});"></div>
+            <div class="hero-image absolute h-screen bg-cover bg-center container" style="background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%), url({{ config('services.tmdb.backdropurl').$movie['backdrop_path'] }});"></div>
             <div class="p-8 z-10 relative">
                 <div class="flex flex-col lg:flex-row lg:justify-between items-center mt-12 lg:mt-64 ml-0 sm:ml-0 md:ml-24">
                     <div class="w-full lg:w-1/3 px-0 sm:px-0 md:px-0 lg:px-8">
-                        <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$movie['poster_path'] }}" class="w-full md:w-auto rounded-lg" />
+                        <img src="{{ $movie['poster_path'] ? config('services.tmdb.posterurl').$movie['poster_path'] : config('services.tmdb.noimgurl') }}" class="w-full md:w-auto rounded-lg" />
                     </div>
                     <div class="w-full lg:w-2/3 mt-12 lg:mt-0">
                         <h2 class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-wider">{{ $movie['title'] }}</h2>
@@ -56,7 +56,7 @@
 @section('scripts')
     <script src="/js/glide.min.js"></script>
     <script>
-        new Glide('.glide__cast', {
+        document.querySelector('.glide__cast .glide__track') && new Glide('.glide__cast', {
             startAt: 0,
             rewind: false,
             perView: 6,
@@ -70,7 +70,7 @@
             }
         }).mount();
 
-        new Glide('.glide__backdrops', {
+        document.querySelector('.glide__backdrops .glide__track') && new Glide('.glide__backdrops', {
             startAt: 0,
             rewind: false
         }).mount();

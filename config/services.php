@@ -33,6 +33,11 @@ return [
     'tmdb' => [
         'token' => env('TMDB_TOKEN'),
         'apiurl' => env('TMDB_API_URL'),
+        'posterurl' => env('TMDB_POSTER_URL'),
+        'backdropurl' => env('TMDB_BACKDROP_URL'),
+        'profileurl' => env('TMDB_PROFILE_URL'),
+        'mediaurl' => env('TMDB_MEDIA_URL'),
+        'noimgurl' => env('TMDB_NO_IMAGE_URL'),
     ]
 
 ];
