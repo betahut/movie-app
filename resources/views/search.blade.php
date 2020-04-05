@@ -1,9 +1,7 @@
 @extends('layouts.main')
 
 @section('styles')
-<style>
-    .screen-empty{ min-height: calc(100vh - 280px); }
-</style>
+<style> .screen-empty{ min-height: calc(100vh - 280px); } </style>
 @endsection
 
 @section('content')
@@ -14,4 +12,8 @@
             <livewire:search-dropdown />
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 @endsection

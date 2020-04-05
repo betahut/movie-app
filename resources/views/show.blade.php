@@ -2,6 +2,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="/css/glide.core.min.css" />
+<link rel="stylesheet" href="https://cdn.plyr.io/3.5.10/plyr.css" />
 @endsection
 
 @section('content')
@@ -38,7 +39,22 @@
                         <div class="other mt-12 flex items-center flex-col md:flex-row">
                             <div class="flex w-full items-center mt-4 md:mt-0  transition ease-in-out duration-150">
                                 @if(count($movie['videos']['results']) > 0)
-                                    <a href="https://youtube.com/watch?v={{ $movie['videos']['results'][0]['key'] }}" target="_blank" class="px-4 py-1 rounded-full bg-blue-700 flex justify-center w-full md:w-2/5 tracking-widest border-blue-700 border-2  transition ease-in-out duration-150">Watch Now <img class="w-4 ml-2" src="/images/001-play.svg" alt="play" /></a>
+                                    <div class="flex flex-col" x-data="{ isOpen: false }">
+                                        <button @click="isOpen = true" class="px-4 py-1 rounded-full bg-blue-700 flex justify-center w-full tracking-widest border-blue-700 border-2  transition ease-in-out duration-150">Watch Now <img class="w-4 ml-2 mt-1" src="/images/001-play.svg" alt="play" /></button>
+                                        
+                                        <div class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto z-50" style="background-color: rgba(0, 0, 0, 0.5);" x-show.transition.opacity="isOpen">
+                                            <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
+                                                <div class="">
+                                                    <div class="flex justify-end pr-2 pt-2">
+                                                        <button @click="document.querySelector('.plyr__poster').click(); isOpen = false;" @keydown.escape.window="document.querySelector('.plyr__poster').click(); isOpen=false;" class="text-3xl leading-none hover:text-gray-300">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body px-8 py-8">
+                                                        <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{ $movie['videos']['results'][0]['key'] }}"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endif
                                 <a href="#" class="{{ (count($movie['videos']['results']) > 0) ? 'ml-8' : '' }}"><img class="w-8" src="/images/005-heart-1.svg" alt="favourite" /></a>
                             </div>
@@ -54,6 +70,8 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.plyr.io/3.5.10/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="/js/glide.min.js"></script>
     <script>
         document.querySelector('.glide__cast .glide__track') && new Glide('.glide__cast', {
@@ -74,5 +92,10 @@
             startAt: 0,
             rewind: false
         }).mount();
+
+        if(document.querySelector('#player')){
+            const player = new Plyr('#player');
+            document.querySelector('.plyr__poster').addEventListener('click', e => player.stop());
+        }
     </script>
 @endsection

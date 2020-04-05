@@ -1,5 +1,10 @@
-<div class="search-container ml-0 sm:ml-0 md:ml-24 mt-12 relative">
-    <input wire:model.debounce.500ms="search" type="text" class="search-input rounded-full py-2 px-4 border border-gray-700 round text-white text-lg w-full bg-white focus:bg-gray-500 transition ease-in-out duration-150" placeholder="Search Movies..." />
+<div class="search-container ml-0 sm:ml-0 md:ml-24 mt-12 relative" x-data="{ isOpen: false }">
+    <input wire:model.debounce.500ms="search" type="text" class="search-input rounded-full py-2 px-4 border border-gray-700 round text-white text-lg w-full bg-white focus:bg-gray-500 transition ease-in-out duration-150" placeholder="Search Movies..." x-ref="search" @keydown.window="
+        if(event.keyCode === 191) {
+            event.preventDefault();
+            $refs.search.focus();
+        }
+    " />
     <div wire:loading class="spinner top-0 right-0 mt-6 mr-12"></div>
     <div class="absolute text-purple-lighter top-0 right-0 px-2 py-2 my-2 mx-2">
         <svg version="1.1" class="h-4 text-gray-700 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
@@ -39,6 +44,6 @@
             @endif
         </div>
     @else
-        <div class="px-3 py-3">Search movies (or) use "/" to search movies</div>
+        <div class="px-3 py-3">Type "/" to search movies</div>
     @endif
 </div>
