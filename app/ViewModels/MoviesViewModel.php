@@ -47,6 +47,8 @@ class MoviesViewModel extends ViewModel {
                 'backdrop_path' => config('services.tmdb.backdropurl').$movie['backdrop_path'],
                 'release_date' => Carbon::parse($movie['release_date'])->format('M d, Y'),
                 'genres' => $genresFormatted
+            ])->only([
+                'poster_path', 'backdrop_path', 'release_date', 'genres', 'id', 'title', 'vote_average', 'overview', 'genre_ids'
             ]);
         });
     }

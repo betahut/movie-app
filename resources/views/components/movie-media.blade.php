@@ -1,10 +1,9 @@
 <div class="movie-list ml-0 sm:ml-0 md:ml-24 mt-12 glide__backdrops relative">
-    <div class="movie-heading"><h4 class="tracking-widest font-medium text-xl">MEDIA ({{ count($movie['images']['backdrops']) }})</h4></div>
-    @if(count($movie['images']['backdrops']) > 0)
-    {{--  + count($movie['images']['posters']) --}}
+    <div class="movie-heading"><h4 class="tracking-widest font-medium text-xl">MEDIA ({{ count($movie['backdrops']) }})</h4></div>
+    @if(count($movie['backdrops']) > 0)
     <div class="flex glide__track" data-glide-el="track" x-data="{ isOpen: false, image: '' }">
         <ul class="glide__slides scrolling-auto overflow-visible">
-            @foreach ($movie['images']['backdrops'] as $backdrop)
+            @foreach ($movie['backdrops'] as $backdrop)
                 <li class="mt-8 {{ (!$loop->last) ? 'mr-2' : '' }} glide__slide w-auto">
                     <div class="flex justify-center items-center transition ease-in-out duration-150 ">
                         @if(trim($backdrop['file_path']) != '')
@@ -13,15 +12,6 @@
                     </div>
                 </li>
             @endforeach
-            {{-- @foreach ($movie['images']['posters'] as $poster)
-                <li class="mt-8 {{ (!$loop->last) ? 'mr-2' : '' }} glide__slide w-auto">
-                    <div class="flex justify-center items-center transition ease-in-out duration-150">
-                        @if(trim($poster['file_path']) != '')
-                            <img src="{{ config('services.tmdb.mediaurl').$poster['file_path'] }}" alt="cast" class="object-contain hover:opacity-75 transition ease-in-out duration-150" />
-                        @endif
-                    </div>
-                </li>
-            @endforeach --}}
         </ul>
         <div class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto z-50" style="background-color: rgba(0, 0, 0, 0.5);" x-show.transition.opacity="isOpen">
             <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">

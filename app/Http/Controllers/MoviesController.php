@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\ViewModels\MoviesViewModel;
+use App\ViewModels\MovieViewModel;
 
 class MoviesController extends Controller
 {
@@ -57,9 +58,9 @@ class MoviesController extends Controller
     {
         $movie = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/'.$id.'?append_to_response=videos,images,credits')->json();
 
-        return view('show',[
-            'movie' => $movie
-        ]);
+        $viewModel = new MovieViewModel($movie);
+
+        return view('show', $viewModel);
     }
 
     /**
