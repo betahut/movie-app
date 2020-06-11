@@ -22,16 +22,12 @@
                         <li class="border-b border-gray-700">
                             <a href="{{ route('movies.show', $searchResult['id']) }}" class="block hover:bg-gray-700 px-3 py-3 flex justify-between items-center">
                                 <span class="flex items-center">
-                                    <img src="{{ $searchResult['poster_path'] ? config('services.tmdb.posterurl').$searchResult['poster_path'] : config('services.tmdb.noimgurl') }}" alt="movie-img" class="h-16 w-12 bg-gray-100" />
+                                    <img src="{{ $searchResult['poster_path'] }}" alt="movie-img" class="h-16 w-12 bg-gray-100" />
                                     <div class="ml-4">
                                         <p class="text-lg font-semibold">{{ $searchResult['title'] }}</p>
-                                        @if(array_key_exists('genre_ids', $searchResult))
                                         <div class="text-gray-400 text-sm whitespace-normal genres md:text-left">
-                                            @foreach ($searchResult['genre_ids'] as $genre_id)
-                                                {{ $movieGenres[$genre_id] }}<span>, </span>
-                                            @endforeach
+                                            {{$searchResult['genres']}}
                                         </div>
-                                        @endif
                                     </div>
                                 </span>
                                 <span class="vote_average">{{ $searchResult['vote_average'] }}</span>
