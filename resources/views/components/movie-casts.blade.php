@@ -1,9 +1,9 @@
 <div class="movie-list ml-0 sm:ml-0 md:ml-24 mt-12 glide__cast relative">
-    <div class="movie-heading"><h4 class="tracking-widest font-medium text-xl">CAST ({{ count($movie['credits']['cast']) }})</h4></div>
-    @if(count($movie['credits']['cast']) > 0)
+    <div class="movie-heading"><h4 class="tracking-widest font-medium text-xl">CAST ({{ count($movie['cast']) }})</h4></div>
+    @if(count($movie['cast']) > 0)
     <div class="flex glide__track" data-glide-el="track">
         <ul class="glide__slides scrolling-auto overflow-visible">
-            @foreach ($movie['credits']['cast'] as $cast)
+            @foreach ($movie['cast'] as $cast)
                 <li class="mt-8 {{ (!$loop->last) ? 'mr-2' : '' }} glide__slide w-auto">
                     <a href="#" class="flex justify-center items-center transition ease-in-out duration-150 ">
                         @if(trim($cast['profile_path']) != '')

@@ -7,13 +7,13 @@
 @section('content')
     <div class="mx-auto bg-gray-900">
         <div class="content">
-            <div class="hero-image absolute h-screen bg-cover bg-center container" style="background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%), url({{ config('services.tmdb.backdropurl').$topRatedMovies[0]['backdrop_path'] }});"></div>
+            <div class="hero-image absolute h-screen bg-cover bg-center container" style="background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%), url({{ $topRatedMovies[0]['backdrop_path'] }});"></div>
             <div class="p-8 z-10 relative">
                 <div class="glide__featured relative">
                     <div class="flex glide__track" data-glide-el="track">
                         <ul class="glide__slides scrolling-auto overflow-visible">
                             @foreach ($topRatedMovies as $topRatedMovie)
-                                <x-featured-movie :movie="$topRatedMovie" :genres="$movieGenres" />
+                                <x-featured-movie :movie="$topRatedMovie" />
                             @endforeach
                         </ul>
                     </div>

@@ -3,7 +3,7 @@
     <div class="flex glide__track" data-glide-el="track">
         <ul class="glide__slides scrolling-auto overflow-visible">
         @foreach ($popularMovies as $popularMovie)
-            <x-movie-card :movie="$popularMovie" :genres="$movieGenres" />
+            <x-movie-card :movie="$popularMovie" />
         @endforeach
         </ul>
     </div>
