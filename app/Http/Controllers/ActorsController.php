@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use App\ViewModels\ActorsViewModel;
 
-class SearchController extends Controller
+class ActorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,8 +14,10 @@ class SearchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('movies.search');
+    {   
+        $popularActors = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/person/popular')->json()['results'];
+        $viewModel = new ActorsViewModel($popularActors);
+        return view('actors.index', $viewModel);
     }
 
     /**
