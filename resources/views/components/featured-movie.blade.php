@@ -4,11 +4,9 @@
         <h2 class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-wider truncate" title="{{ $movie['title'] }}">{{ $movie['title'] }}</h2>
         <p class="text-xl tracking-wider mt-4 h-28 overflow-hidden truncate" style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; white-space: normal; display: -webkit-box;">{{ $movie['overview'] }}</p>
         <div class="details block md:flex md:items-center md:justify-between md:items-center text-lg font-semibold tracking-widest mt-6">
-            <div class="hidden movie-back-drop">{{ config('services.tmdb.backdropurl').$movie['backdrop_path'] }}</div>
+            <div class="hidden movie-back-drop">{{ $movie['backdrop_path'] }}</div>
             <div class="genres">
-                @foreach ($movie['genre_ids'] as $genre_id)
-                    {{ $genres[$genre_id] }}<span> | </span>
-                @endforeach
+                {{ $movie['genres'] }}
             </div>
             <div class="rating flex items-center ml-0 md:ml-4 mt-2 md:mt-0">
                 <img class="w-4" src="/images/007-star.svg" alt="rating" />

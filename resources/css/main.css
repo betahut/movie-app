@@ -4,5 +4,6 @@
 
 @tailwind utilities;
 
+.genres{ white-space: normal; }
 .genres span:nth-last-of-type(1){ display: none; }
 .spinner{ position: absolute; color: inherit !important; }
