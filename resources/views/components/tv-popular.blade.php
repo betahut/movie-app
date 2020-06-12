@@ -1,12 +1,12 @@
-<div class="movie-list ml-0 sm:ml-0 md:ml-24 mt-12 glide__whats__popular relative">
-    <div class="movie-heading flex justify-between items-center">
+<div class="tv-list ml-0 sm:ml-0 md:ml-24 mt-12 glide__whats__popular relative">
+    <div class="tv-heading flex justify-between items-center">
         <h4 class="tracking-widest font-medium text-xl">WHAT'S POPULAR</h4>
-        <a href="{{route('movies.page', '1')}}">More &rsaquo;</a>
+        <a href="{{route('tv.page', '1')}}">More &rsaquo;</a>
     </div>
     <div class="flex glide__track" data-glide-el="track">
         <ul class="glide__slides scrolling-auto overflow-visible">
-        @foreach ($popularMovies as $popularMovie)
-            <x-movie-card :movie="$popularMovie" />
+        @foreach ($popularTv as $tvshow)
+            <x-tv-card :tvshow="$tvshow" />
         @endforeach
         </ul>
     </div>

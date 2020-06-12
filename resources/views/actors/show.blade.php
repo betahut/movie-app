@@ -30,7 +30,7 @@
                             <span class="ml-2">{{$actor['popularity']}}</span>
                         </div>
                     </div>
-                    <div class="other-links block md:flex md:items-center text-lg font-semibold tracking-widest mt-6">
+                    <div class="other-links block flex md:items-center text-lg font-semibold tracking-widest mt-6">
                         @if($actor['homepage'])
                         <div class="website flex items-center ml-0 mt-2 md:mt-0">
                             <a href="{{$actor['homepage']}}" target="_blank" title="Website">
@@ -66,11 +66,11 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                             @foreach($knownForMovies as $movie)
                             <div class="mt-4 flex flex-col items-center md:items-start truncate">
-                                <a href="{{route('movies.show', $movie['id'])}}">
-                                    <img src="{{ $movie['poster_path'] }}" alt="{{$movie['title']}}" class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
+                                <a href="{{$movie['link']}}">
+                                    <img src="{{ $movie['poster_path'] }}" alt="{{$movie['title']}}" class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg border border-gray-800 h-48">
                                 </a>
                                 <div class="mt-2 truncate">
-                                    <a href="{{route('movies.show', $movie['id'])}}" class="text-md hover:text-gray-300 truncate" title="{{$movie['title']}}">{{$movie['title']}}</a>
+                                    <a href="{{$movie['link']}}" class="text-md hover:text-gray-300 truncate" title="{{$movie['title']}}">{{$movie['title']}}</a>
                                 </div>
                             </div>
                             @endforeach
@@ -98,8 +98,10 @@
                                     </div>
                                 @endif
                                 <div class="flex flex-row items-center relative z-10 p-4 truncate">
-                                    <img src="{{$credit['poster_path']}}" alt="{{$credit['title']}}" class="w-8 h-10 mr-2 rounded-lg" style="border: 1px solid #2d3748;" />
-                                    <strong class="mr-2 font-bold">{{$credit['title']}}</strong>
+                                    <a class="flex flex-row items-center truncate" href="{{$credit['link']}}">
+                                        <img src="{{$credit['poster_path']}}" alt="{{$credit['title']}}" class="w-8 h-10 mr-2 rounded-lg" style="border: 1px solid #2d3748;" />
+                                        <strong class="mr-2 font-bold">{{$credit['title']}}</strong>
+                                    </a>
                                     <span class="hidden md:inline">{{$credit['character']}}</span>
                                 </div>
                                 <div class="relative z-10 pr-4 pl-2 h-full">

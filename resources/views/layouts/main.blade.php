@@ -21,11 +21,10 @@
     <nav class="fixed bottom-0 sm:bottom-0 md:bottom-auto left-0 sm:left-0 md:left-auto h-24 md:h-screen w-full sm:w-full md:w-24 flex justify-between  items-center flex-row md:flex-col bg-gray-900 z-50 border-t md:border-t-0 border-r-0 md:border-r border-gray-800">
         <div class="brand text-5xl font-extrabold">M.</div>
         <ul class="nav-items flex flex-row md:flex-col items-center">
-            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="/search" title="Search"><img class="w-8 sm:w-8 md:w-32" src="/images/003-search.svg" alt="" /></a></li>
-            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="/" title="Movies"><img class="w-8 sm:w-8 md:w-32" src="/images/001-play.svg" alt="" /></a></li>
-            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="#" title="Tv Shows"><img class="w-8 sm:w-8 md:w-32" src="/images/002-talk-show.svg" alt="" /></a></li>
-            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="/actors" title="Actors"><img class="w-8 sm:w-8 md:w-32" src="/images/act.svg" alt="" /></a></li>
-            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="#" title="Favourites"><img class="w-8 sm:w-8 md:w-32" src="/images/004-heart.svg" alt="" /></a></li>
+            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="{{route('seacrh.index')}}" title="Search"><img class="w-8 sm:w-8 md:w-32" src="/images/003-search.svg" alt="" /></a></li>
+            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="{{route('movies.index')}}" title="Movies"><img class="w-8 sm:w-8 md:w-32" src="/images/001-play.svg" alt="" /></a></li>
+            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="{{route('tv.index')}}" title="Tv Shows"><img class="w-8 sm:w-8 md:w-32" src="/images/002-talk-show.svg" alt="" /></a></li>
+            <li class="mx-4 my-2 sm:mx-4 sm:my-2 md:mx-8 md:my-4"><a href="{{route('actors.index')}}" title="Actors"><img class="w-8 sm:w-8 md:w-32" src="/images/act.svg" alt="" /></a></li>
         </ul>
         <div class="hidden sm:hidden md:block"></div>
     </nav>

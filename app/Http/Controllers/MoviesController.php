@@ -14,17 +14,28 @@ class MoviesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page = 1)
     {   
-        $popularMovies = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/popular')->json()['results'];
+        abort_if($page > 500, 204);
+        $popularMovies = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/popular?page='.$page)->json()['results'];
         $nowPlayingMovies = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/now_playing')->json()['results'];
         $topRatedMovies = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/top_rated')->json()['results'];
-        $movieGenres = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/genre/movie/list')->json()['genres'];
-        // $movieGenres = collect($movieGenres)->mapWithKeys(function($genre) { return [$genre['id'] => $genre['name']]; });
-        
-        $moviesViewModel = new MoviesViewModel($popularMovies, $nowPlayingMovies, $movieGenres, $topRatedMovies);
+        $movieGenres = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/genre/movie/list')->json()['genres'];        
+        $moviesViewModel = new MoviesViewModel($popularMovies, $nowPlayingMovies, $movieGenres, $topRatedMovies, $page);
 
         return view('movies.index', $moviesViewModel);
+    }
+
+    public function page($page = 1)
+    {   
+        abort_if($page > 500, 204);
+        $popularMovies = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/popular?page='.$page)->json()['results'];
+        $nowPlayingMovies = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/now_playing')->json()['results'];
+        $topRatedMovies = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/top_rated')->json()['results'];
+        $movieGenres = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/genre/movie/list')->json()['genres'];        
+        $moviesViewModel = new MoviesViewModel($popularMovies, $nowPlayingMovies, $movieGenres, $topRatedMovies, $page);
+
+        return view('movies.page', $moviesViewModel);
     }
 
     /**
