@@ -6,6 +6,7 @@
         <div class="container absolute ml-0 sm:ml-0 md:ml-24 z-0">
             <h2 class="text-6xl font-black mt-4 opacity-25 ml-8">Popular</h2>
         </div>
+        <div class="hero-image absolute h-screen bg-cover bg-center container" style="background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(26, 32, 44) 85%);"></div>
         <div class="p-8 z-10 relative z-10">
             <div class="flex flex-col lg:justify-between items-start mt-8 ml-0 sm:ml-0 md:ml-24">
                 <h1 class="text-5xl font-bold">Actors</h1>

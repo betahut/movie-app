@@ -5,7 +5,7 @@
         <ul class="glide__slides scrolling-auto overflow-visible">
             @foreach ($movie['cast'] as $cast)
                 <li class="mt-8 {{ (!$loop->last) ? 'mr-2' : '' }} glide__slide w-auto">
-                    <a href="#" class="flex justify-center items-center transition ease-in-out duration-150 ">
+                    <a href="{{ route('actors.show', $cast['id']) }}" class="flex justify-center items-center transition ease-in-out duration-150 ">
                         @if(trim($cast['profile_path']) != '')
                             <img src="{{ config('services.tmdb.profileurl').$cast['profile_path'] }}" alt="cast" class="w-32 h-32 object-contain rounded-full hover:opacity-75 transition ease-in-out duration-150 border border-gray-300" />
                         @else
@@ -13,7 +13,7 @@
                         @endif
                     </a>
                     <div class="mt-2 flex justify-center flex-col items-center md:block transition ease-in-out duration-150 text-center">
-                        <a href="#" class="text-base mt-2 hover:text-gray:300">{{ $cast['name'] }}</a>
+                        <a href="{{ route('actors.show', $cast['id']) }}" class="text-base mt-2 hover:text-gray:300">{{ $cast['name'] }}</a>
                         <div class="text-gray-400 text-sm"> {{ $cast['character'] }} </div>
                     </div>
                 </li>
