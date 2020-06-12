@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\ViewModels\ActorsViewModel;
+use App\ViewModels\ActorViewModel;
 
 class ActorsController extends Controller
 {
@@ -13,10 +14,11 @@ class ActorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page = 1)
     {   
-        $popularActors = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/person/popular')->json()['results'];
-        $viewModel = new ActorsViewModel($popularActors);
+        abort_if($page > 500, 204);
+        $popularActors = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/person/popular?page='.$page)->json()['results'];
+        $viewModel = new ActorsViewModel($popularActors, $page);
         return view('actors.index', $viewModel);
     }
 
@@ -47,9 +49,13 @@ class ActorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($actorId)
+    {   
+        $actor = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/person/'.$actorId)->json();
+        $social = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/person/'.$actorId.'/external_ids')->json();
+        $credits = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/person/'.$actorId.'/combined_credits')->json();
+        $viewModel = new ActorViewModel($actor, $social, $credits);
+        return view('actors.show', $viewModel);
     }
 
     /**

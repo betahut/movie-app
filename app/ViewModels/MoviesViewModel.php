@@ -10,12 +10,14 @@ class MoviesViewModel extends ViewModel {
     public $nowPlayingMovies;
     public $movieGenres;
     public $topRatedMovies;
+    public $page;
 
-    public function __construct($popularMovies, $nowPlayingMovies, $movieGenres, $topRatedMovies) {
+    public function __construct($popularMovies, $nowPlayingMovies, $movieGenres, $topRatedMovies, $page) {
         $this->popularMovies = $popularMovies;
         $this->nowPlayingMovies = $nowPlayingMovies;
         $this->movieGenres = $movieGenres;
         $this->topRatedMovies = $topRatedMovies;
+        $this->page = $page;
     }
 
     public function popularMovies() {
@@ -34,6 +36,14 @@ class MoviesViewModel extends ViewModel {
         return collect($this->movieGenres)->mapWithKeys(function($genre) {
             return [$genre['id'] => $genre['name']];
         });
+    }
+
+    public function previous() {
+        return $this->page > 1 ? $this->page - 1 : null;
+    }
+
+    public function next() {
+        return $this->page < 500 ? $this->page + 1 : null;
     }
 
     // helper methods
