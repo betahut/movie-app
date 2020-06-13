@@ -9,6 +9,7 @@
 - ``` Alpine JS```:white_check_mark: 
 - ``` Laravel Components```:white_check_mark: 
 - ``` TMDB Api```:white_check_mark: 
+- ``` Infinite Scroll```:white_check_mark: 
 - ``` TailwindCss```:white_check_mark: 
 - ``` PurgeCss```:white_check_mark: 
 
