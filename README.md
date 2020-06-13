@@ -1,6 +1,27 @@
-# movie-app
-## A responsive movie web app
+# Movies
+## Description
+:rainbow:- TMDB + Laravel + LiveWire + AlpineJS + ViewModels + Components = Awesome Movies App :fire:
 
+## Items Used
+- ``` Laravel```:white_check_mark: 
+- ``` Laravel LiveWire```:white_check_mark: 
+- ``` Laravel ViewModels```:white_check_mark: 
+- ``` Alpine JS```:white_check_mark: 
+- ``` Laravel Components```:white_check_mark: 
+- ``` TMDB Api```:white_check_mark: 
+- ``` Infinite Scroll```:white_check_mark: 
+- ``` TailwindCss```:white_check_mark: 
+- ``` PurgeCss```:white_check_mark: 
+
+## Live Demo
+[Link](https://moviweb.herokuapp.com/):computer:
+
+## Todos
+- ``` Adding TvShows, Actors to Search.```:black_square_button:
+- ``` Minor Design Corrections```:black_square_button:
+- ``` Making this faster and cleaner```:black_square_button:
+
+## Sample Images
 ![Image for Page 0](https://raw.githubusercontent.com/moaj257/movie-app/master/public/images/page_0.png)
 
 ![Image for Page 1](https://raw.githubusercontent.com/moaj257/movie-app/master/public/images/page_1.png)
