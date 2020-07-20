@@ -68,8 +68,9 @@ class MoviesController extends Controller
     public function show($id)
     {
         $movie = Http::withToken(config('services.tmdb.token'))->get(config('services.tmdb.apiurl').'/movie/'.$id.'?append_to_response=videos,images,credits')->json();
+        $ytsData = Http::get('https://yts.mx/api/v2/list_movies.json?query_term='.$movie['original_title'].'&limit=1')->json();
 
-        $viewModel = new MovieViewModel($movie);
+        $viewModel = new MovieViewModel($movie, $ytsData);
 
         return view('movies.show', $viewModel);
     }
