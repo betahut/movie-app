@@ -1,6 +1,7 @@
 # Movies
 ## Description
 :rainbow:- TMDB + Laravel + LiveWire + AlpineJS + ViewModels + Components = Awesome Movies App :fire:
+Movies, Tv Shows, Casts and Media info with live streaming.
 
 ## Items Used
 - ``` Laravel```:white_check_mark: 
@@ -21,6 +22,7 @@
 
 ## Todos
 - ``` Add Support for Tamil & Tamil Dubbed Movies```:black_square_button:
+- ``` Add Tv Series stream```:black_square_button:
 - ``` Movies Automation Fix```:black_square_button:
 - ``` Making this faster and cleaner```:black_square_button:
 
