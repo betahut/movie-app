@@ -32,11 +32,11 @@
                                 <span class="ml-2">{{ $movie['vote_average'] }}</span>
                             </div>
                         </div>
-                        <div class="other mt-12 flex items-center flex-col md:flex-row">
+                        <div class="other mt-12 flex items-center flex-col">
                             <div class="flex w-full items-center mt-4 md:mt-0  transition ease-in-out duration-150">
                                 @if(count($movie['videos']['results']) > 0)
                                     <div class="flex flex-col" x-data="{ isOpen: false }">
-                                        <button @click="isOpen = true" class="px-4 py-1 rounded-full bg-blue-700 flex justify-center w-full tracking-widest border-blue-700 border-2  transition ease-in-out duration-150">Watch Now <img class="w-4 ml-2 mt-1" src="/images/001-play.svg" alt="play" /></button>
+                                        <button @click="isOpen = true" class="px-4 py-1 rounded-full bg-blue-700 flex justify-center items-center w-full tracking-widest border-blue-700 border-2  transition ease-in-out duration-150">Watch Trailer <img class="w-4 ml-2 mt-1" src="/images/001-play.svg" alt="play" /></button>
                                         
                                         <div class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto z-50" style="background-color: rgba(0, 0, 0, 0.5);" x-show.transition.opacity="isOpen">
                                             <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
@@ -53,6 +53,30 @@
                                     </div>
                                 @endif
                             </div>
+                            
+                            @if($torrents)
+                            <div class="torrents-list w-full flex flex-row flex-wrap mt-4" x-data="torrentAlpine()">
+                                @foreach(json_decode($torrents) as $torrent)
+                                <div class="flex flex-col {{$loop->last ? '': 'mr-2'}} mt-2 w-1/2">
+                                    <button @click="isOpen = true; updateMagnet('{{$torrent->magnet}}', '{{$movie['title']}}', '{{$movie['backdrop_path']}}', '{{$movie['imdb_id']}}'); loadTorrent();" class="torrent-item px-4 py-1 rounded-full bg-blue-700 flex justify-center items-center w-full tracking-widest border-blue-700 border-2  transition ease-in-out duration-150" data-magnet="
+                                    {{$torrent->magnet}}" data-size="{{$torrent->size_bytes}}">Watch Now {{$torrent->quality}} ({{$torrent->size}})<img class="w-4 ml-2 mt-1" src="/images/001-play.svg" alt="play" /></button>
+                                </div>
+                                @endforeach
+
+                                <div class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto z-50" style="background-color: rgba(0, 0, 0, 0.5);" x-show.transition.opacity="isOpen">
+                                    <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
+                                        <div class="">
+                                            <div class="flex justify-end pr-2 pt-2">
+                                                <button @click="isOpen = false; magnet=''; document.querySelector('#torrent-player').innerHTML = '';" @keydown.escape.window="isOpen = false; magnet=''; document.querySelector('#torrent-player').innerHTML = '';" class="text-3xl leading-none hover:text-gray-300">&times;</button>
+                                            </div>
+                                            <div class="modal-body px-8 py-8">
+                                                <div id="torrent-player" class="webtor text-center"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -65,6 +89,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/@webtor/player-sdk-js/dist/index.min.js"></script>
     <script src="https://cdn.plyr.io/3.5.10/plyr.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="/js/glide.min.js"></script>
@@ -92,5 +117,42 @@
             const player = new Plyr('#player');
             document.querySelector('.plyr__poster').addEventListener('click', e => player.stop());
         }
+
+        torrentAlpine = () => {
+            return {
+                isOpen: false,
+                magnet: '',
+                title: '',
+                poster: '',
+                imdbId: '',
+                updateMagnet: (magnet, title, poster, imdbId) => { this.magnet = magnet; this.title = title; this.poster = poster; this.imdbId = imdbId; },
+                loadTorrent: () => {
+                    window.webtor = window.webtor || [];
+                    window.webtor.push({
+                        id: 'torrent-player',
+                        magnet: unescape(this.magnet),
+                        title: this.title,
+                        poster: this.poster,
+                        theme: 'dark',
+                        width: '100%',
+                        imdbId: this.imdbId,
+                        header: true,
+                        on: function(e) {
+                            console.log(e, unescape(this.magnet));
+                            if (e.name == window.webtor.TORRENT_FETCHED) {
+                                console.log('Torrent fetched!')
+                            }
+                            if (e.name == window.webtor.TORRENT_ERROR) {
+                                console.log('Torrent error!')
+                            }
+                        },
+                    });
+                }
+            }
+        }
+
+        // documnet.querySelector('.torrent-item').addEventListener('click', (e) => {
+        //     e.preventDefault();
+        // })
     </script>
 @endsection

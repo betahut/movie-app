@@ -12,13 +12,16 @@
 - ``` Infinite Scroll```:white_check_mark: 
 - ``` TailwindCss```:white_check_mark: 
 - ``` PurgeCss```:white_check_mark: 
+- ``` Adding TvShows, Actors to Search.```:white_check_mark:
+- ``` Minor Design Corrections```:white_check_mark:
+- ``` Live Stream Movies```:white_check_mark:
 
 ## Live Demo
 [Link](https://moviweb.herokuapp.com/):computer:
 
 ## Todos
-- ``` Adding TvShows, Actors to Search.```:black_square_button:
-- ``` Minor Design Corrections```:black_square_button:
+- ``` Add Support for Tamil & Tamil Dubbed Movies```:black_square_button:
+- ``` Movies Automation Fix```:black_square_button:
 - ``` Making this faster and cleaner```:black_square_button:
 
 ## Sample Images
