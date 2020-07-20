@@ -1,7 +1,7 @@
 # Movies
 ## Description
 :rainbow:- TMDB + Laravel + LiveWire + AlpineJS + ViewModels + Components = Awesome Movies App :fire:
-Movies, Tv Shows, Casts and Media info with live streaming.
+```Movies, Tv Shows, Casts and Media info with live streaming.```
 
 ## Items Used
 - ``` Laravel```:white_check_mark: 
