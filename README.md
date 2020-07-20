@@ -20,6 +20,7 @@
 [Link](https://moviweb.herokuapp.com/):computer:
 
 ## Todos
+- ``` Add Support for Tamil & Tamil Dubbed Movies```:black_square_button:
 - ``` Movies Automation Fix```:black_square_button:
 - ``` Making this faster and cleaner```:black_square_button:
 
