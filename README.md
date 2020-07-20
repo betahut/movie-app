@@ -20,7 +20,7 @@
 [Link](https://moviweb.herokuapp.com/):computer:
 
 ## Todos
-- ``` Movies Automation Fix``:black_square_button:
+- ``` Movies Automation Fix```:black_square_button:
 - ``` Making this faster and cleaner```:black_square_button:
 
 ## Sample Images
