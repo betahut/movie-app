@@ -21,6 +21,12 @@
 ## Live Demo
 [Link](https://moviweb.herokuapp.com/):computer:
 
+## Staggers
+[![Stargazers](https://reporoster.com/stars/betahut/movie-app)](https://github.com/betahut/movie-app/stargazers)
+
+## Forkers
+[![Forkers](https://reporoster.com/forks/betahut/movie-app)](https://github.com/betahut/movie-app/network/members)
+
 ## Todos
 - ``` Add Support for Tamil & Tamil Dubbed Movies```:black_square_button:
 - ``` Add Tv Series stream```:black_square_button:
